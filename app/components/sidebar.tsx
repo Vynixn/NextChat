@@ -4,7 +4,7 @@ import styles from "./home.module.scss";
 
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
+import ChatGptIcon from "../icons/chatgpt.png";
 import AddIcon from "../icons/add.svg";
 import DeleteIcon from "../icons/delete.svg";
 import DragIcon from "../icons/drag.svg";
@@ -27,6 +27,7 @@ import dynamic from "next/dynamic";
 import { Selector, showConfirm } from "./ui-lib";
 import clsx from "clsx";
 import { isMcpEnabled } from "../mcp/actions";
+import NextImage from "next/image";
 
 const DISCOVERY = [
   { name: Locale.Plugin.Name, path: Path.Plugins },
@@ -167,7 +168,7 @@ export function SideBarContainer(props: {
 export function SideBarHeader(props: {
   title?: string | React.ReactNode;
   subTitle?: string | React.ReactNode;
-  logo?: React.ReactNode;
+  logo?: any;
   children?: React.ReactNode;
   shouldNarrow?: boolean;
 }) {
@@ -186,7 +187,7 @@ export function SideBarHeader(props: {
           </div>
           <div className={styles["sidebar-sub-title"]}>{subTitle}</div>
         </div>
-        <div className={clsx(styles["sidebar-logo"], "no-dark")}>{logo}</div>
+        <NextImage src={logo.src} alt="logo" width={50} height={50} />
       </div>
       {children}
     </Fragment>
@@ -247,7 +248,7 @@ export function SideBar(props: { className?: string }) {
       <SideBarHeader
         title="Vynix AI"
         subTitle="Build your own AI assistant."
-        logo={<ChatGptIcon />}
+        logo={ChatGptIcon}
         shouldNarrow={shouldNarrow}
       >
         <div className={styles["sidebar-header-bar"]}>
