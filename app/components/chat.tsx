@@ -43,7 +43,6 @@ import RobotIcon from "../icons/robot.svg";
 import SizeIcon from "../icons/size.svg";
 import QualityIcon from "../icons/hd.svg";
 import StyleIcon from "../icons/palette.svg";
-import PluginIcon from "../icons/plugin.svg";
 import McpToolIcon from "../icons/tool.svg";
 import HeadphoneIcon from "../icons/headphone.svg";
 import {
@@ -72,7 +71,6 @@ import {
   supportsCustomSize,
   useMobileScreen,
   selectOrCopy,
-  showPlugins,
 } from "../utils";
 
 import { uploadImage as uploadImageRemote } from "@/app/utils/chat";
@@ -691,9 +689,28 @@ export function ChatActions(props: {
                       "o3",
                       "o3-mini",
                       "o4-mini",
+                      "dall-e-3",
+                      "gpt-4.1",
+                      "gpt-4.1-2025-04014",
+                      "gpt-4.1-mini",
+                      "gpt-4.1-mini-2025-04-14",
+                      "gpt-4.1-nano",
+                      "gpt-4.1-nano-2025-04-14",
+                      "gpt-4.1-2025-04-14",
+                      "gpt-5-chat",
+                      "gpt-5-mini",
+                      "gpt-5-nano",
+                      "gpt-5",
+                      "gpt-5-chat-2025-01-01-preview",
+                      "gpt-3.5-turbo",
+                      "gpt-3.5-turbo-1106",
+                      "gpt-3.5-turbo-0125",
+                      "gpt-4.5-preview",
+                      "gpt-4.5-preview-2025-02-27",
                     ].includes(k?.displayName)) ||
                   (k.displayName.includes("deepseek") &&
-                    !k.displayName.includes("-ai/DeepSeek")),
+                    !k.displayName.includes("-ai/DeepSeek") &&
+                    !k?.provider?.providerName.includes("302.AI")),
               )
               .map((m) => ({
                 title: `${m.displayName}${
@@ -808,7 +825,7 @@ export function ChatActions(props: {
           />
         )}
 
-        {showPlugins(currentProviderName, currentModel) && (
+        {/* {showPlugins(currentProviderName, currentModel) && (
           <ChatAction
             onClick={() => {
               if (pluginStore.getAll().length == 0) {
@@ -836,7 +853,7 @@ export function ChatActions(props: {
               });
             }}
           />
-        )}
+        )} */}
 
         {/* {!isMobileScreen && (
           <ChatAction
