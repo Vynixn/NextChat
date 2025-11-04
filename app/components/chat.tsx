@@ -671,6 +671,7 @@ export function ChatActions(props: {
           }}
         />
 
+        {/* // 只保留openai和deepseek */}
         <ChatAction
           onClick={() => setShowModelSelector(true)}
           text={currentModelName}
@@ -680,14 +681,28 @@ export function ChatActions(props: {
         {showModelSelector && (
           <Selector
             defaultSelectedValue={`${currentModel}@${currentProviderName}`}
-            items={models.map((m) => ({
-              title: `${m.displayName}${
-                m?.provider?.providerName
-                  ? " (" + m?.provider?.providerName + ")"
-                  : ""
-              }`,
-              value: `${m.name}@${m?.provider?.providerName}`,
-            }))}
+            items={models
+              .filter(
+                (k) =>
+                  (k?.provider?.providerName.includes("OpenAI") &&
+                    ![
+                      "o1-mini",
+                      "o1-preview",
+                      "o3",
+                      "o3-mini",
+                      "o4-mini",
+                    ].includes(k?.displayName)) ||
+                  (k.displayName.includes("deepseek") &&
+                    !k.displayName.includes("-ai/DeepSeek")),
+              )
+              .map((m) => ({
+                title: `${m.displayName}${
+                  m?.provider?.providerName
+                    ? " (" + m?.provider?.providerName + ")"
+                    : ""
+                }`,
+                value: `${m.name}@${m?.provider?.providerName}`,
+              }))}
             onClose={() => setShowModelSelector(false)}
             onSelection={(s) => {
               if (s.length === 0) return;
