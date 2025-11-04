@@ -689,7 +689,9 @@ export function ChatActions(props: {
                     "deepseek-coder",
                     "deepseek-reasoner",
                   ].includes(k?.displayName) &&
-                  ["OpenAI", "DeepSeek"].includes(k?.provider?.providerName),
+                  ["OpenAI", "DeepSeek"].includes(
+                    k?.provider?.providerName as any,
+                  ),
               )
 
               .map((m) => ({
