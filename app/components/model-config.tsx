@@ -6,7 +6,6 @@ import { InputRange } from "./input-range";
 import { ListItem, Select } from "./ui-lib";
 import { useAllModels } from "../utils/hooks";
 import { groupBy } from "lodash-es";
-import styles from "./model-config.module.scss";
 import { getModelProvider } from "../utils/model";
 
 export function ModelConfigList(props: {
@@ -273,7 +272,7 @@ export function ModelConfigList(props: {
           }
         ></input>
       </ListItem>
-      <ListItem
+      {/* <ListItem
         title={Locale.Settings.CompressModel.Title}
         subTitle={Locale.Settings.CompressModel.SubTitle}
       >
@@ -299,7 +298,7 @@ export function ModelConfigList(props: {
               </option>
             ))}
         </Select>
-      </ListItem>
+      </ListItem> */}
     </>
   );
 }
